@@ -15,51 +15,56 @@
 
 #--FUNCTIONS-------------------------------------------
 #function definition below - must define before calling in main code (using)
-def difference(people, max_cap):
-
-    diff = max_cap - people
-
-    #the return vaue replaces the fuction call
-    return diff #when diff < 0, too many ppl for room
+def difference(people: int, max_cap: int) -> int:
+    """Return max_cap - people. Positive -> seats remaining; negative -> over capacity."""
+    return max_cap - people
 
 
-def decision(a):
-#error trap loops!
-    while answer !="y" and answer != "n":
-     print ("INVALID ENTRY - 'Y' or 'n' only!")
-     answer = input("/t/tWould you like to enter another temperature? [y/n]:").lower()
+def decision() -> str:
+    """Ask the user whether they want to check another room. Returns 'y' or 'n'."""
+    while True:
+        answer = input("\t\tWould you like to check another room? [y/n]: ").strip().lower()
+        if answer in ("y", "n"):
+            return answer
+        print("INVALID ENTRY - please enter 'y' or 'n'.")
 
 
 #----MAIN CODE-------------------------------------------
 
 #function call below - actually the function
-print(f"the fference is:{difference(22, 25)}")
-
 print("\n\t\tWelcome to my lab #1\n")
 
-answer = "y"
 
-while answer == "y":
+def main() -> None:
+    print(f"the difference is: {difference(22, 25)}")  # example/test line - optional
+
+    answer = "y"
+    while answer == "y":
+        # asks a user for the meeting name, room capacity, and people attending the meeting
+        name = input("\nEnter the name of the room: ").strip()
+
+        # validate numeric input for capacity and attending
+        try:
+            capacity = int(input(f"Enter the max capacity for {name} room: "))
+            attending = int(input(f"Enter the number of people attending the meeting in {name} room: "))
+        except ValueError:
+            print("Invalid number entered. Please enter integer values for capacities and attendees.")
+            continue
+
+        # compute difference
+        diff_return = difference(attending, capacity)
+        if diff_return >= 0:
+            print("\nThe meeting can be held legally")
+            print(f"{diff_return} additional people can legally attend")
+        else:
+            print("\nThe meeting will be illegal as planned")
+            print(f"{abs(diff_return)} people must be excluded to meet the fire regulations.")
+
+        # ask if user wants to check another room
+        answer = decision()
+
+    print("\nThank you — goodbye!")
 
 
-#asks a user for the meeting name, room capacity, and people attending the meeting
- name= input("\nEnter the name ofthe room: ")
- capacity = int(input(f"Enter the max capacity for {name} room: "))
- attending = int(input(f"Enter the number of people attending the meeting in {name} room: "))
-
-
-#passes the room capacity and people attending to the difference() you wrote in Part 1
-diff_return = difference(attending, capacity)
-
-# displays to the user whether the meeting meets fire safety or not (legal/illegal) also display how many people can be added or removed (remember: if different returns a negative
-#number, this is how many people should be removed)
-#○ NOTE: all values related to people (adding/removing) should be displayed as positive values
-
-if diff_return > 0:1.
-
-# ask the user if they have another number to check; pass the value to the decision() you wrote in Part 2 and continue the program based on that function’s return
-answer = input("\t\tWould you like to check another room? [y/n]: ").lower()
-
-answer = decision(answer)
-
-#Once the user is done checking meeting attendance, display a goodbye message
+if __name__ == "__main__":
+    main()
