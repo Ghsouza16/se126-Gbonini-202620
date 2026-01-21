@@ -103,4 +103,4 @@ print(f"\t Laptops to replace: {old_laptops}  @ $1.5k/each --> ${old_laptops * 1
 total_cost = (old_desktops * 2000) + (old_laptops * 1500)
 print(f"\n\t\t\tTotal Replacement Cost: ${total_cost:,.2f}")
 
-print(f"\nTOTAL RECORDS: {total_records}\n\nThank you for using my program Goodbye. \n\n\n")
+print(f"\nTOTAL RECORDS: {total_records}\n\nThank you for using my program Goodbye. \n\n\n") 
