@@ -22,7 +22,7 @@ yr = []
 
 #print(f"{'TYPE':10}{'BRAND':10}{'PROC':4}{'RAM':7}{'1st HD':7}{'#HD':5}{'2nd HD':7}{'OS':5}{'YEAR':5}")
 #print("-" * 50)
-with open("filehandling.csv") as csvfile:
+with open("text_files\filehandling.csv") as csvfile:
 
     file = csv.reader(csvfile)
 
